@@ -12,4 +12,6 @@ cargo run --bin 01
 
 ## Running all days
 
-Not yet supported.
+```bash
+cargp run
+```
