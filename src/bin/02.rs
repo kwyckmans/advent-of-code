@@ -108,15 +108,15 @@ fn main() {
     scores.insert('C', 3);
 
     let instructions: Vec<(Moves, Moves)> = inputs
-    .iter()
-    .map(|line| {
-        line.split_whitespace()
-            .map(|s| s.chars().nth(0).unwrap())
-            .filter(|c| !c.is_whitespace())
-            .collect()
-    })
-    .map(|line: Vec<char>| (Moves::from_char(line[0]), Moves::from_char(line[1])))
-    .collect();
+        .iter()
+        .map(|line| {
+            line.split_whitespace()
+                .map(|s| s.chars().next().unwrap())
+                .filter(|c| !c.is_whitespace())
+                .collect()
+        })
+        .map(|line: Vec<char>| (Moves::from_char(line[0]), Moves::from_char(line[1])))
+        .collect();
 
     let mut total: i32 = instructions
         .iter()
@@ -129,13 +129,12 @@ fn main() {
         .iter()
         .map(|line| {
             line.split_whitespace()
-                .map(|s| s.chars().nth(0).unwrap())
+                .map(|s| s.chars().next().unwrap())
                 .filter(|c| !c.is_whitespace())
                 .collect()
         })
         .map(|line: Vec<char>| (Moves::from_char(line[0]), Assignement::from_char(line[1])))
         .collect();
-
 
     total = advanced_instructions
         .iter()

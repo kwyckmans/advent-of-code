@@ -33,7 +33,6 @@ macro_rules! solve {
     }};
 }
 
-
 pub fn read_file(folder: &str, day: u8) -> String {
     let cwd = env::current_dir().unwrap();
 
@@ -49,7 +48,10 @@ pub fn read_file_to_arr(folder: &str, day: u8) -> Vec<String> {
     let filepath = cwd.join("src").join(folder).join(format!("{:02}.txt", day));
 
     let f = fs::read_to_string(filepath);
-    f.expect("could not open input file").lines().map(|s| s.to_string()).collect()
+    f.expect("could not open input file")
+        .lines()
+        .map(|s| s.to_string())
+        .collect()
 }
 
 fn parse_time(val: &str, postfix: &str) -> f64 {

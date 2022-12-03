@@ -20,7 +20,7 @@ fn calc_total_cals_for_elves(elves: &Vec<String>) -> (i32, i32) {
     let mut totals: Vec<i32> = Vec::new();
 
     for elf in elves {
-        if elf == "" {
+        if elf.is_empty() {
             totals.push(temp);
             temp = 0;
         } else {

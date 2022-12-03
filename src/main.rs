@@ -2,9 +2,7 @@ use advent_of_code::{ANSI_BOLD, ANSI_ITALIC, ANSI_RESET};
 use std::process::Command;
 
 fn main() {
-    let total: f64 = (1..=4)
-        .map(|day| execute_day(day))
-        .sum();
+    let total: f64 = (1..=4).map(execute_day).sum();
 
     println!(
         "{}Total:{} {}{:.2}ms{}",
@@ -12,7 +10,7 @@ fn main() {
     );
 }
 
-fn execute_day(day: i32) -> f64{
+fn execute_day(day: i32) -> f64 {
     let day = format!("{:02}", day);
 
     let cmd = Command::new("cargo")
