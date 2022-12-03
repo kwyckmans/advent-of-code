@@ -2,7 +2,7 @@ use advent_of_code::{ANSI_BOLD, ANSI_ITALIC, ANSI_RESET};
 use std::process::Command;
 
 fn main() {
-    let total: f64 = (1..=1)
+    let total: f64 = (1..=4)
         .map(|day| execute_day(day))
         .sum();
 
