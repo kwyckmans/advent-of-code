@@ -11,7 +11,7 @@ macro_rules! solve {
         use std::fmt::Display;
         use std::time::Instant;
 
-        fn print_result<T: Display>(func: impl FnOnce(&Vec<String>) -> Option<T>, input: &Vec<String>) {
+        fn print_result<T: Display>(func: impl FnOnce(&str) -> Option<T>, input: &str) {
             let timer = Instant::now();
             let result = func(input);
             let elapsed = timer.elapsed();
@@ -42,13 +42,12 @@ pub fn read_file(folder: &str, day: u8) -> String {
     f.expect("could not open input file")
 }
 
-pub fn read_file_to_arr(folder: &str, day: u8) -> Vec<String> {
-    let cwd = env::current_dir().unwrap();
+pub fn convert_input_to_vec(input: &str) -> Vec<String> {
+    // let cwd = env::current_dir().unwrap();
 
-    let filepath = cwd.join("src").join(folder).join(format!("{:02}.txt", day));
+    // let filepath = cwd.join("src").join(folder).join(format!("{:02}.txt", day));
 
-    let f = fs::read_to_string(filepath);
-    f.expect("could not open input file")
+    input
         .lines()
         .map(|s| s.to_string())
         .collect()

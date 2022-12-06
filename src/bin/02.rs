@@ -1,5 +1,6 @@
-use advent_of_code::read_file_to_arr;
 use std::collections::HashMap;
+
+use advent_of_code::{read_file, convert_input_to_vec};
 
 #[derive(Debug, PartialEq, Eq, Hash)]
 enum Assignement {
@@ -94,7 +95,8 @@ impl Moves {
 }
 
 fn main() {
-    let inputs = read_file_to_arr("inputs", 2);
+    let raw_input = read_file("inputs", 2);
+    let inputs = convert_input_to_vec(&raw_input);
 
     let mut scores = HashMap::new();
     scores.insert('W', 6);

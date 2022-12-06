@@ -1,7 +1,9 @@
+use advent_of_code::convert_input_to_vec;
+
 static ALPHABET: &str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-pub fn part_one(input: &Vec<String>) -> Option<u32> {
-    let total: usize = input
+pub fn part_one(input: &str) -> Option<u32> {
+    let total:usize = convert_input_to_vec(input)
         .iter()
         .map(|content| content.split_at(content.len() / 2))
         .map(|(first, second)| {
@@ -9,6 +11,7 @@ pub fn part_one(input: &Vec<String>) -> Option<u32> {
         })
         .map(|c| ALPHABET.find(c.unwrap()).unwrap() + 1)
         .sum();
+
 
     Option::Some(total as u32)
 }
@@ -34,10 +37,12 @@ fn find_common_item_generic(rugsacks: Vec<String>) -> Option<char> {
     Option::None
 }
 
-pub fn part_two(input: &Vec<String>) -> Option<u32> {
+pub fn part_two(input: &str) -> Option<u32> {
+    let rugsacks = convert_input_to_vec(input);
+
     let mut total = 0;
-    for n in (0..input.len() - 2).step_by(3) {
-        let badge = find_common_item_generic(input[n..n + 3].to_vec()).unwrap();
+    for n in (0..rugsacks.len() - 2).step_by(3) {
+        let badge = find_common_item_generic(rugsacks[n..n + 3].to_vec()).unwrap();
         total += ALPHABET.find(badge).unwrap() + 1;
     }
 
@@ -45,7 +50,7 @@ pub fn part_two(input: &Vec<String>) -> Option<u32> {
 }
 
 fn main() {
-    let input = &advent_of_code::read_file_to_arr("inputs", 3);
+    let input = &advent_of_code::read_file("inputs", 3);
     advent_of_code::solve!(1, part_one, input);
     advent_of_code::solve!(2, part_two, input);
 }
@@ -56,13 +61,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = advent_of_code::read_file_to_arr("examples", 3);
+        let input = advent_of_code::read_file("examples", 3);
         assert_eq!(part_one(&input), Option::Some(157));
     }
 
     #[test]
     fn test_part_two() {
-        let input = advent_of_code::read_file_to_arr("examples", 3);
+        let input = advent_of_code::read_file("examples", 3);
         assert_eq!(part_two(&input), Option::Some(70));
     }
 }

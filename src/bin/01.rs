@@ -1,7 +1,8 @@
-use advent_of_code::read_file_to_arr;
+use advent_of_code::{convert_input_to_vec, read_file};
 
 fn main() {
-    let inputs = read_file_to_arr("inputs", 1);
+    let raw_input = read_file("inputs", 1);
+    let inputs = convert_input_to_vec(&raw_input);
 
     let (max_cals, total) = calc_total_cals_for_elves(&inputs);
     println!(
